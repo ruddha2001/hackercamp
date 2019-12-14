@@ -15,8 +15,7 @@ let connection = mysql.createConnection({
   database: "dwN1LRFz3o"
 });
 
-app.use(express.static(__dirname + "dashboard/dist/dashboard"));
-app.use(express.static("/loginstatic",__dirname + "res"));
+app.use(express.static(__dirname + "/res"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
