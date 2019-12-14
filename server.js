@@ -34,9 +34,7 @@ app.post("/login", function(req, res) {
     hash = result[0].pass;
 
     if (bcrypt.compareSync(password, hash)) {
-      res.sendFile(
-        path.join(__dirname + "/dashboard/dist/dashboard/index.html")
-      );
+      res.redirect("http://192.168.43.183:4200");
     } else {
       res.send("Login failed");
     }
