@@ -27,7 +27,7 @@ app.post("/login", function(req, res) {
   let hash = "";
 
   connection.query("SELECT * FROM `auth` WHERE `user`=?",[username],function(err,result,field){
-      hash = result.pass;
+      hash = result[0].pass;
   });
 
   if (bcrypt.compareSync(password, hash)){
