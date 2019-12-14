@@ -1,8 +1,7 @@
-const bcrypt = require ('bcryptjs');
+const bcrypt = require("bcryptjs");
 const bodyParser = require("body-parser");
 const chalk = require("chalk");
 const express = require("express");
-const jwt = require("jsonwebtoken");
 const mysql = require("mysql");
 const path = require("path");
 
@@ -16,26 +15,31 @@ let connection = mysql.createConnection({
   database: "dwN1LRFz3o"
 });
 
-app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Login API
 app.post("/login", function(req, res) {
   let username = req.body.user;
   let password = req.body.pass;
 
   let hash = "";
 
-  connection.query("SELECT * FROM `auth` WHERE `user`=?",[username],function(err,result,field){
-      hash = result[0].pass;
+  connection.query("SELECT * FROM `auth` WHERE `user`=?", [username], function(
+    err,
+    result
+  ) {
+    if (err) throw err;
+    hash = result[0].pass;
+
+    if (bcrypt.compareSync(password, hash)) {
+      res.sendFile(path.join(__dirname+"/dashboard.html"));
+    } else {
+      res.send("Login failed");
+    }
   });
 
-  if (bcrypt.compareSync(password, hash)){
-      res.sendFile("dashboard.html");
-  }
-  else {
-      res.send("Login failed");
-  }
+  
 });
 
 app.post("/piapi", function(req, res) {
