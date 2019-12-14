@@ -34,7 +34,7 @@ app.post("/login", function(req, res) {
     hash = result[0].pass;
 
     if (bcrypt.compareSync(password, hash)) {
-      res.sendFile(path.join(__dirname+"/dashboard.html"));
+      res.sendFile(path.join(__dirname+"/dashboard/index.html"));
     } else {
       res.send("Login failed");
     }
