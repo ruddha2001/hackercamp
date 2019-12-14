@@ -15,7 +15,12 @@ app.post ('/login', function(req,res){
     console.log(username);
     console.log(password);
     res.send("You are logged in (maybe).");
-})
+});
+
+app.post ('/piapi', function(req,res){
+    let data = req.body;
+    console.log(data);
+});
 
 //Default function
 app.get ('/', function(req,res){
