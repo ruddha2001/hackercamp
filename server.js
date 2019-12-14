@@ -15,7 +15,7 @@ let connection = mysql.createConnection({
   database: "dwN1LRFz3o"
 });
 
-app.use(express.static(__dirname + 'dashboard/dist/dashboard'));
+app.use(express.static(__dirname + "dashboard/dist/dashboard"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -34,13 +34,13 @@ app.post("/login", function(req, res) {
     hash = result[0].pass;
 
     if (bcrypt.compareSync(password, hash)) {
-      res.sendFile(path.join(__dirname+"/dashboard/dist/dashboard/index.html"));
+      res.sendFile(
+        path.join(__dirname + "/dashboard/dist/dashboard/index.html")
+      );
     } else {
       res.send("Login failed");
     }
   });
-
-  
 });
 
 app.post("/piapi", function(req, res) {
@@ -50,9 +50,7 @@ app.post("/piapi", function(req, res) {
 
 //Default function
 app.get("/", function(req, res) {
-  res.send(
-    "The Express Server is up and running. However no function has been defined for this function to execute."
-  );
+  res.sendFile(path.join(__dirname, "/index.html"));
 });
 
 app.listen(8000, function(err) {
