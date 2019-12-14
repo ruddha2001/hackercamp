@@ -10,8 +10,8 @@ app.use (bodyParser.urlencoded({extended: true}));
 
 
 app.post ('/login', function(req,res){
-    let username = res.body.user;
-    let password = res.body.pass;
+    let username = req.body.user;
+    let password = req.body.pass;
     console.log(username);
     console.log(password);
     res.send("You are logged in (maybe).");
