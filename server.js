@@ -14,6 +14,7 @@ app.post ('/login', function(req,res){
     let password = res.body.pass;
     console.log(username);
     console.log(password);
+    res.send("You are logged in (maybe).");
 })
 
 //Default function
