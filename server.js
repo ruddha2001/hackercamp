@@ -15,7 +15,7 @@ let connection = mysql.createConnection({
   database: "dwN1LRFz3o"
 });
 
-app.use('/', express.static('res'))
+app.use(express.static(__dirname + 'dashboard/dist/dashboard'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -34,7 +34,7 @@ app.post("/login", function(req, res) {
     hash = result[0].pass;
 
     if (bcrypt.compareSync(password, hash)) {
-      res.sendFile(path.join(__dirname+"/dashboard.html"));
+      res.sendFile(path.join(__dirname+"/dashboard/dist/dashboard/index.html"));
     } else {
       res.send("Login failed");
     }
