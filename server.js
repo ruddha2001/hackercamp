@@ -15,6 +15,7 @@ let connection = mysql.createConnection({
   database: "dwN1LRFz3o"
 });
 
+app.use('/', express.static('res'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
