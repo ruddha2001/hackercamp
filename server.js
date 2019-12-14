@@ -8,8 +8,17 @@ const app = express();
 app.use (bodyParser.json());
 app.use (bodyParser.urlencoded({extended: true}));
 
+
+app.post ('/login', function(req,res){
+    let username = res.body.user;
+    let password = res.body.pass;
+    console.log(username);
+    console.log(password);
+})
+
+//Default function
 app.get ('/', function(req,res){
-    res.send ("The Expres console.log(err);s Server is up and running. However no function has been defined for this function to execute.");
+    res.send ("The Express Server is up and running. However no function has been defined for this function to execute.");
 });
 
 app.listen(8000,function(err){
