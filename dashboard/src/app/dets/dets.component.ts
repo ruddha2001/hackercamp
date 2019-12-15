@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as CanvasJS from "../canvasjs.min";
+import { ChartService } from "../chartservice.service";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-dets",
@@ -7,9 +9,12 @@ import * as CanvasJS from "../canvasjs.min";
   styleUrls: ["./dets.component.css"]
 })
 export class DetsComponent implements OnInit {
-  constructor() {}
+  value: Object;
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    //Chart 1
     var dps = []; // dataPoints
     var chart = new CanvasJS.Chart("chartContainer", {
       title: {
@@ -35,7 +40,7 @@ export class DetsComponent implements OnInit {
       count = count || 1;
 
       for (var j = 0; j < count; j++) {
-        yVal = yVal + Math.round(5 + Math.random() * (-5 - 5));
+        yVal = Math.floor(Math.random() * 100) + 1;
         dps.push({
           x: xVal,
           y: yVal

@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const bodyParser = require("body-parser");
 const chalk = require("chalk");
+const cors = require("cors");
 const express = require("express");
 const mysql = require("mysql");
 const path = require("path");
@@ -15,6 +16,7 @@ let connection = mysql.createConnection({
   database: "dwN1LRFz3o"
 });
 
+app.use(cors());
 app.use(express.static(__dirname + "/res"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,9 +43,16 @@ app.post("/login", function(req, res) {
   });
 });
 
+app.get ("/chartapi", function(req,res){
+  connection.query("SELECT * FROM `chart` ORDER BY `row` DESC LIMIT 1",function(err,result,field){
+    res.send(result[0]);
+  });
+});
+
 app.post("/piapi", function(req, res) {
   let data = req.body;
   console.log(data);
+  res.send("OK");
 });
 
 //Default function
