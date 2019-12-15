@@ -1,7 +1,6 @@
 const bcrypt = require("bcryptjs");
 const bodyParser = require("body-parser");
 const chalk = require("chalk");
-const cors = require("cors");
 const express = require("express");
 const mysql = require("mysql");
 const path = require("path");
@@ -16,7 +15,6 @@ let connection = mysql.createConnection({
   database: "dwN1LRFz3o"
 });
 
-app.use(cors());
 app.use(express.static(__dirname + "/res")); //Defining where the index.html and its files lie
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
