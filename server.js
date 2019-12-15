@@ -17,7 +17,7 @@ let connection = mysql.createConnection({
 });
 
 app.use(cors());
-app.use(express.static(__dirname + "/res"));
+app.use(express.static(__dirname + "/res")); //Defining where the index.html and its files lie
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -43,6 +43,7 @@ app.post("/login", function(req, res) {
   });
 });
 
+// CHart API
 app.get ("/chartapi", function(req,res){
   connection.query("SELECT * FROM `chart` ORDER BY `row` DESC LIMIT 1",function(err,result,field){
     res.send(result[0]);
@@ -55,11 +56,13 @@ app.post("/piapi", function(req, res) {
   res.send("OK");
 });
 
-//Default function
+//Get Function for Login Page
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "/index.html"));
 });
 
+
+// Listening on Port 8000
 app.listen(8000, function(err) {
   if (err) {
     console.log(err);
