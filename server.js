@@ -36,7 +36,7 @@ app.post("/login", function(req, res) {
     hash = result[0].pass;
 
     if (bcrypt.compareSync(password, hash)) {
-      res.redirect("http://192.168.43.183:4200");
+      res.redirect("http://localhost:4200");
     } else {
       res.send("Login failed");
     }
